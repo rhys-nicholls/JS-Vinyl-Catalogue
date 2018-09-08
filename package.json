@@ -2,7 +2,7 @@
   "name": "vinyl-catalogue",
   "version": "1.0.0",
   "description": "Vinyl Catalogue Webapp",
-  "main": "src/js/index.js",
+  "main": "src/app.js",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.3"
   }
 }

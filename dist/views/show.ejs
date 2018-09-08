@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vinyl Catalogue</title>
+</head>
+<body>
+  <div>
+    <img src= <%= vinyl.image %> alt="">
+    <h3>Artist: <%= vinyl.artist %></h3>
+    <h3>Title <%= vinyl.title %></h3>
+    <h3>CatNo: <%= vinyl.catno %></h3>
+    <table class="table table-sm">
+
+      <tbody>
+      <% vinyl.tracklist.forEach(track => { %>
+      <tr>
+          <td><%= track.position %> </td>
+          <td><%= track.title %> </td>
+          <td><%= track.duration %></td>
+      </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
