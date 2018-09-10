@@ -35,6 +35,20 @@ Discogs.getRelease = params => {
 };
 
 /**
+ * Gets Title and Artist for a release. Allows for fuzzy search.
+ * E.g. Title: DAMN Artist:Kendrick would be stored as Title: Damn. Artist: Kendrick Lamar
+ * @param {Object} params to be passed to .getID
+ */
+Discogs.getTitleArtist = params => {
+  return Discogs.getRelease(params)
+    .then(res => ({
+      artist: res.artists[0].name,
+      title: res.title
+    }))
+    .catch(err => console.error(err));
+};
+
+/**
  * Get tracklist for release. Array.map() to create an Object for each track
  * containing track position, title and duration
  * @param {Object} params to be passed to .getRelease
@@ -62,12 +76,16 @@ Discogs.getGenres = params => {
 };
 
 /**
- * Get labels(s) for a release
+ * Get labels(s) for a release. Mapped to return only label name and catno
  * @param {Object} params to be passed to .getRelease
  */
 Discogs.getLabels = params => {
   return Discogs.getRelease(params)
-    .then(res => res.labels)
+    .then(res => res.labels.map(label => ({
+      labelName: label.name,
+      catno: label.catno
+    }))
+    )
     .catch(err => console.error(err));
 };
 
@@ -83,33 +101,43 @@ Discogs.getImage = params => {
     .catch(err => console.error(err));
 };
 
-Discogs.getCurrentPrice = params => {
-  return Discogs.getId(params)
-  .then(res => axios.get(`https://api.discogs.com//marketplace/price_suggestions/${res}`))
-  .catch (err => console.log(err));
+/**
+ * Get current lowest price. 
+ * TODO: The Discogs API only returns the lowest price for a release. Possibly scape the actual release page
+ * to get the median price for a release to give a more accurate representation of a releases value.
+ * Value returned is in USD
+ * @param {Object} params
+ */
+Discogs.getPrice = id => {
+  return axios.get(`https://api.discogs.com/releases/${id}`)
+  .then(res => res.data.lowest_price)
+  .catch(err => console.log(err));
 }
 
 /**
- * Takes all information from all the above searches an returns a single Object.
- * Uses Promise.all, which returns an array with the result of all the Promises passed to it
+ * Takes all information from all the above searches an returns a single Object, exceot getPrice as price is subject to change
+ * so will not be stored.
+ * Uses Promise.all which returns an array with the results of all the Promises passed to it
  * @param {Object} params
  */
 Discogs.createVinyl = params => {
   return Promise.all([
+    Discogs.getId(params),
+    Discogs.getTitleArtist(params),
     Discogs.getTracklist(params),
     Discogs.getGenres(params),
     Discogs.getLabels(params),
-    Discogs.getImage(params)
+    Discogs.getImage(params),
   ])
     .then(res => {
       return {
-        title: params.title,
-        artist: params.artist,
-        tracklist: res[0],
-        genres: res[1],
-        labels: res[2].map(label => label.name),
-        catno: res[2][0].catno, //Take catalog number from first label entry
-        image: res[3]
+        discogsId: res[0],
+        artist: res[1].artist,
+        title: res[1].title,
+        tracklist: res[2],
+        genres: res[3],
+        labels: res[4],
+        image: res[5]
       };
     })
     .catch(err => console.error(err));

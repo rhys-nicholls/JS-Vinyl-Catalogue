@@ -6,12 +6,12 @@ const express = require('express'),
 const token = `jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN`; // User token for DiscogsAPI
 
 app.set('view engine', 'ejs');
-app.set('views', '/Users/rhysnicholls/Development/WebDev/Vinyl Catalogue/Vinyl Catalogue/dist/views/');
+app.set('views', './dist/views');
 app.use(express.static('/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
- res.render('index.ejs');
+  res.render('index.ejs');
 })
 
 app.post('/', (req, res) => {
@@ -25,10 +25,9 @@ app.post('/', (req, res) => {
   }
 
   Discogs.createVinyl(params)
-  .then(result => {
-    res.render('show.ejs', {vinyl: result})
+  .then(vinyl => {
+    res.render('show', {vinyl: vinyl});
   })
-
 })
 
 
