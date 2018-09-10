@@ -49,7 +49,7 @@ Discogs.getTitleArtist = params => {
 };
 
 /**
- * Get tracklist for release. Array.map() to create an Object for each track
+ * Get tracklist for release. Mapped to create an Object for each track
  * containing track position, title and duration
  * @param {Object} params to be passed to .getRelease
  */
