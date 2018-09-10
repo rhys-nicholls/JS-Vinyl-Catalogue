@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const vinylSchema = new mongoose.Schema({
   discogsId: String,
@@ -10,16 +10,16 @@ const vinylSchema = new mongoose.Schema({
   labels: [
     {
       labelName: String,
-      catno: String
-    }
+      catno: String,
+    },
   ],
   tracklist: [
     {
       position: String,
       title: String,
-      duration: String
-    }
-  ]
+      duration: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model('Vinyl', vinylSchema);
