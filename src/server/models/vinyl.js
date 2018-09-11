@@ -20,6 +20,12 @@ const vinylSchema = new mongoose.Schema({
       duration: String,
     },
   ],
+  owner: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  },
 });
 
 module.exports = mongoose.model('Vinyl', vinylSchema);

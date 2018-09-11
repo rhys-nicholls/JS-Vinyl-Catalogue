@@ -7,7 +7,7 @@ const User = require('./models/user');
 
 const app = express();
 
-// Routes
+// Require Routes
 const accountRoutes = require('./routes/account');
 const collectionRoutes = require('./routes/collection');
 
@@ -33,6 +33,11 @@ mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true
 // Express Router routes
 app.use(accountRoutes);
 app.use('/collection', collectionRoutes);
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.get('/', (req, res) => {
   res.render('index');

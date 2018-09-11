@@ -23,6 +23,7 @@ router.post('/new', (req, res) => {
       } else {
         const newVinyl = newlyCreated;
         newVinyl.condition = req.body.condition;
+        newVinyl.owner.id = req.user.id;
         newVinyl.save();
         Discogs.getPrice(result.discogsId).then((price) => {
           res.render('show', { vinyl: newlyCreated, price });
