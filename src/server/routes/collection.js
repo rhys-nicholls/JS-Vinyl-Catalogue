@@ -1,13 +1,15 @@
 const express = require('express');
+const middleware = require('../middleware/index');
 const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
 
 const router = express.Router();
 const token = 'jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN'; // User token for DiscogsAPI
 
-router.get('/new', (req, res) => res.render('new'));
+router.get('/new', middleware.isLoggedIn, (req, res) => res.render('new'));
 
-router.post('/new', (req, res) => {
+// CREATE - Add new Vinyl to db
+router.post('/new', middleware.isLoggedIn, (req, res) => {
   const params = {
     title: req.body.title,
     artist: req.body.artist,
