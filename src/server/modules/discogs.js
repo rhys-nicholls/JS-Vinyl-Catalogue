@@ -2,6 +2,8 @@ const axios = require('axios');
 
 const Discogs = {};
 
+axios.defaults.headers.get['User-Agent'] = 'VinylCatalogueProject/0.1 +https://github.com/rhys-nicholls/JS-Vinyl-Catalogue';
+
 /*
 * Creates a GET request to the Discogs API search.
 * @params {Object} params. The params to be added to the end of the search query

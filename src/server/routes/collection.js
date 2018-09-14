@@ -4,9 +4,17 @@ const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
 
 const router = express.Router();
-const token = 'jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN'; // User token for DiscogsAPI
+const key = 'mzyVxGVrLGQwIjqViCeS';
+const secret = 'rKMIXAiOABcXlIVTuiBDunruiYCEXzqr';
+// const token = 'jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN'; // User token for DiscogsAPI
 
-router.get('/new', middleware.isLoggedIn, (req, res) => res.render('new'));
+// INDEX - Show all Vinyls in collection
+router.get('/', middleware.isLoggedIn, (req, res) => {
+  Vinyl.find({ 'owner.id': res.locals.currentUser.id })
+    .then(vinyls => res.render('collection', { vinyls }));
+});
+
+router.get('/new', middleware.isLoggedIn, (req, res) => res.render('collection/new'));
 
 // CREATE - Add new Vinyl to db
 router.post('/new', middleware.isLoggedIn, (req, res) => {
@@ -15,7 +23,9 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
     artist: req.body.artist,
     country: req.body.country,
     format: 'vinyl',
-    token,
+    type: 'release',
+    key,
+    secret,
   };
 
   Discogs.createVinyl(params).then((result) => {
@@ -28,7 +38,7 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
         newVinyl.owner.id = req.user.id;
         newVinyl.save();
         Discogs.getPrice(result.discogsId).then((price) => {
-          res.render('show', { vinyl: newlyCreated, price });
+          res.render('collection/show', { vinyl: newlyCreated, price });
         });
       }
     });

@@ -11,10 +11,11 @@ const app = express();
 const accountRoutes = require('./routes/account');
 const collectionRoutes = require('./routes/collection');
 
+mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true });
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './dist/views');
 app.use(express.static('/dist'));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(require('express-session')({
   secret: 'my name is heman',
@@ -28,16 +29,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true });
-
-// Express Router routes
-app.use(accountRoutes);
-app.use('/collection', collectionRoutes);
-
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
+
+// Express Router routes
+app.use(accountRoutes);
+app.use('/collection', collectionRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');

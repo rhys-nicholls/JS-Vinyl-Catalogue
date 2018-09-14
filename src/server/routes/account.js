@@ -17,7 +17,7 @@ router.post('/register', (req, res) => {
       return res.redirect('register');
     }
     passport.authenticate('local')(req, res, () => {
-      res.redirect('collection/new');
+      res.redirect('collection/');
     });
   });
 });
@@ -28,9 +28,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local',
   {
-    successRedirect: 'collection/new',
+    successRedirect: 'collection/',
     failureRedirect: 'login',
-  }));
+  }), (req, res) => {}); // eslint-disable-line
 
 router.get('/logout', (req, res) => {
   req.logout();
