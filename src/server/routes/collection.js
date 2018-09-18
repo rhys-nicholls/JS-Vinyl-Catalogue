@@ -68,4 +68,24 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+// EDIT - edit existing vinyl
+router.get('/:id/edit', middleware.isLoggedIn, (req, res) => {
+  Vinyl.findById(req.params.id, (err, foundVinyl) => {
+    res.render('collection/edit', { vinyl: foundVinyl });
+  });
+});
+
+// UPDATE - update route
+router.put('/:id', middleware.isLoggedIn, (req, res) => {
+  console.log(req.body.vinyl);
+  Vinyl.findByIdAndUpdate(req.params.id, req.body.vinyl, (err, updatedVinyl) => { // eslint-disable-line
+    if (err) {
+      res.redirect('/collection');
+    } else {
+      // redirect to show page
+      res.redirect(`/collection/${req.params.id}`);
+    }
+  });
+});
+
 module.exports = router;
