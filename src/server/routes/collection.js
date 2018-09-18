@@ -4,8 +4,8 @@ const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
 
 const router = express.Router();
-const key = 'mzyVxGVrLGQwIjqViCeS';
-const secret = 'rKMIXAiOABcXlIVTuiBDunruiYCEXzqr';
+const key = 'mzyVxGVrLGQwIjqViCeS'; // Key for DiscogsAPI
+const secret = 'rKMIXAiOABcXlIVTuiBDunruiYCEXzqr'; // Secret for Discogs API
 // const token = 'jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN'; // User token for DiscogsAPI
 
 // INDEX - Show all Vinyls in collection
@@ -14,8 +14,8 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
     .then(vinyls => res.render('collection', { vinyls }));
 });
 
-// CREATE - Show page for adding a new Vinyl to collection
-router.get('/new', (req, res) => res.render('collection/new'));
+// SHOW - Show page for adding a new Vinyl to collection
+router.get('/new', middleware.isLoggedIn, (req, res) => res.render('collection/new'));
 
 // CREATE - Add new Vinyl to db
 router.post('/new', middleware.isLoggedIn, (req, res) => {
@@ -47,7 +47,7 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
 });
 
 // SHOW - for an individual vinyl
-router.get('/:id', (req, res) => {
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
   Vinyl.findById(req.params.id).then((vinyl) => {
     const foundVinyl = vinyl;
     Discogs.getPrice(foundVinyl.discogsId).then((price) => {
@@ -58,7 +58,7 @@ router.get('/:id', (req, res) => {
 });
 
 // DESTROY - Destroy route
-router.delete('/:id', (req, res) => {
+router.delete('/:id', middleware.isLoggedIn, (req, res) => {
   Vinyl.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       res.redirect('/collection');
