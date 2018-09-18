@@ -14,19 +14,8 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
     .then(vinyls => res.render('collection', { vinyls }));
 });
 
-// SHOW - for an individual vinyl
-router.get('/:id', (req, res) => {
-  Vinyl.findById(req.params.id).then((vinyl) => {
-    const foundVinyl = vinyl;
-    Discogs.getPrice(foundVinyl.discogsId).then((price) => {
-      foundVinyl.price = price;
-      res.render('collection/show', { vinyl });
-    });
-  });
-});
-
 // CREATE - Show page for adding a new Vinyl to collection
-router.get('/new', middleware.isLoggedIn, (req, res) => res.render('collection/new'));
+router.get('/new', (req, res) => res.render('collection/new'));
 
 // CREATE - Add new Vinyl to db
 router.post('/new', middleware.isLoggedIn, (req, res) => {
@@ -54,6 +43,28 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
         });
       }
     });
+  });
+});
+
+// SHOW - for an individual vinyl
+router.get('/:id', (req, res) => {
+  Vinyl.findById(req.params.id).then((vinyl) => {
+    const foundVinyl = vinyl;
+    Discogs.getPrice(foundVinyl.discogsId).then((price) => {
+      foundVinyl.price = price;
+      res.render('collection/show', { vinyl });
+    });
+  });
+});
+
+// DESTROY - Destroy route
+router.delete('/:id', (req, res) => {
+  Vinyl.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      res.redirect('/collection');
+    } else {
+      res.redirect('/collection');
+    }
   });
 });
 

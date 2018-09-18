@@ -8,12 +8,13 @@
 
 <body>
   <div class="container">
+    <a href="/collection/new">Add New Vinyl</a>
     <div class="cards">
        <% vinyls.forEach(vinyl => { %>
           <div class="card">
             <img class="card-img" src="<%= vinyl.image %>">
             <div class="content">
-              <span class="card-title"><%= vinyl.title %></span>
+              <span class="card-title"><%= vinyl.title %></span><br>
               <span class="card-artist"><%= vinyl.artist %></span>
               <a class="btn-full" href="/collection/<%= vinyl._id %>">View</a>
             </div>
