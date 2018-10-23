@@ -3,14 +3,13 @@ $secondary-color: #b6b0b2;
 $tertiary-color: #4a586a;
 $accent-color: #e67e22;
 
-
 @mixin breakpoint($point) {
   @if $point == tablet {
-    @media (min-width: 768px) and (max-width: 1024px){
+    @media (min-width: 1024px) {
       @content;
     }
   } @else if $point == phone {
-    @media (max-width: 767px){
+    @media (max-width: 767px) {
       @content;
     }
   }
@@ -29,4 +28,100 @@ html {
   font-weight: 300;
   text-rendering: optimizeLegibility;
   line-height: 1.5;
+}
+
+body {
+  height: 100%;
+  padding-top: 70px;
+}
+
+/* -------------------------------------- */
+/* NAV BAR */
+/* -------------------------------------- */
+
+.nav-bar {
+  background: $tertiary-color;
+  @include breakpoint(tablet) {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+    height: 70px;
+    align-items: center;
+  }
+  padding-bottom: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.nav-main {
+  list-style-type: none;
+  overflow: hidden;
+  height: 0;
+  transition: height 200ms ease-in-out;
+  @include breakpoint(tablet) {
+    display: inline-flex;
+    margin-right: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: auto;
+  }
+
+  li {
+    text-align: center;
+    margin: 15px auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: $secondary-color;
+    transition: color 200ms ease-in;
+    @include breakpoint(tablet) {
+      margin-left: 40px;
+    }
+  }
+
+  a:hover {
+    color: $accent-color;
+    transition: color 200ms ease-out;
+  }
+}
+
+.nav-title {
+  display: inline-block;
+  font-size: 110%;
+  margin-top: 10px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: $secondary-color;
+
+  span {
+    font-weight: 400;
+    color: $accent-color;
+  }
+
+  i {
+    font-size: 150%;
+    color: $primary-color;
+    vertical-align: middle;
+  }
+}
+
+.nav-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 150%;
+  color: $primary-color;
+  @include breakpoint(tablet) {
+  
+      display: none;
+  
+  }
+}
+
+.nav-active {
+  height: 130px;
+  transition: height 200ms ease-in-out;
 }
