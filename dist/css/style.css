@@ -72,7 +72,8 @@ body {
   .nav-title i {
     font-size: 150%;
     color: #cfc8cd;
-    vertical-align: middle; }
+    vertical-align: middle;
+    margin-right: 5px; }
 
 .nav-toggle {
   position: absolute;
