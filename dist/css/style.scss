@@ -1,5 +1,32 @@
+$primary-color: #cfc8cd;
+$secondary-color: #b6b0b2;
+$tertiary-color: #4a586a;
+$accent-color: #e67e22;
+
+
+@mixin breakpoint($point) {
+  @if $point == tablet {
+    @media (min-width: 768px) and (max-width: 1024px){
+      @content;
+    }
+  } @else if $point == phone {
+    @media (max-width: 767px){
+      @content;
+    }
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  color: $secondary-color;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
 }
