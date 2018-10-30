@@ -1,8 +1,18 @@
+/* -------------------------------------- */
+/* VARIABLES */
+/* -------------------------------------- */
+
+/*--- Colours ---*/
 $primary-color: #cfc8cd;
 $secondary-color: #b6b0b2;
 $tertiary-color: #4a586a;
 $accent-color: #e67e22;
 
+/* -------------------------------------- */
+/* MIXINS */
+/* -------------------------------------- */
+
+/*--- Media Query Mixin ---*/
 @mixin breakpoint($point) {
   @if $point == tablet {
     @media (min-width: 1024px) {
@@ -14,6 +24,10 @@ $accent-color: #e67e22;
     }
   }
 }
+
+/* -------------------------------------- */
+/* GENERAL */
+/* -------------------------------------- */
 
 * {
   box-sizing: border-box;
@@ -33,6 +47,14 @@ html {
 body {
   height: 100%;
   padding-top: 70px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("/images/records.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* -------------------------------------- */
@@ -41,6 +63,12 @@ body {
 
 .nav-bar {
   background: $tertiary-color;
+  padding-bottom: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
   @include breakpoint(tablet) {
     display: flex;
     justify-content: space-between;
@@ -48,11 +76,6 @@ body {
     height: 70px;
     align-items: center;
   }
-  padding-bottom: 10px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1;
 }
 
 .nav-main {
@@ -60,6 +83,7 @@ body {
   overflow: hidden;
   height: 0;
   transition: height 200ms ease-in-out;
+
   @include breakpoint(tablet) {
     display: inline-flex;
     margin-right: 30px;
@@ -77,14 +101,15 @@ body {
     text-decoration: none;
     color: $secondary-color;
     transition: color 200ms ease-in;
+
     @include breakpoint(tablet) {
       margin-left: 40px;
     }
-  }
 
-  a:hover {
-    color: $accent-color;
-    transition: color 200ms ease-out;
+    &:hover {
+      color: $accent-color;
+      transition: color 200ms ease-out;
+    }
   }
 }
 
@@ -116,9 +141,7 @@ body {
   font-size: 150%;
   color: $primary-color;
   @include breakpoint(tablet) {
-  
-      display: none;
-  
+    display: none;
   }
 }
 
