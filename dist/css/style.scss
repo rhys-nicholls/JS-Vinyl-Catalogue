@@ -40,8 +40,16 @@ $accent-color: #e67e22;
   }
 }
 
-/* -------------------------------------- */		
-/* GENERAL */		
+/*-- Wall ---*/
+@mixin wall() {
+  text-align: center;
+  padding: 15px 30px;
+  background-color: rgba(248, 246, 246, 0.9);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* -------------------------------------- */
+/* GENERAL */
 /* -------------------------------------- */
 
 * {
@@ -249,12 +257,9 @@ input[type="submit"]:active {
 }
 
 .login-wall {
-  background-color: rgba(248, 246, 246, 0.8);
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  @include wall();
   display: flex;
   flex-direction: column;
-  text-align: center;
-  padding: 15 30px;
 
   img {
     width: 75px;
@@ -281,5 +286,23 @@ input[type="submit"]:active {
       color: $accent-color;
       transition: color 200ms ease-out;
     }
+  }
+}
+
+/* -------------------------------------- */
+/* NEW VINYL */
+/* -------------------------------------- */
+
+.new-container {
+  @include container(centered);
+}
+
+.new-wall {
+  @include wall();
+  min-width: 500px;
+
+  input[type="submit"] {
+    margin: 15px 0;
+    width: 100%;
   }
 }
