@@ -72,6 +72,7 @@ html {
     url("/images/records.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {
@@ -311,6 +312,27 @@ input[type="submit"] {
   }
 }
 
+/* -------------------------------------- */
+/* REGISTER */
+/* -------------------------------------- */
+.reg-container {
+  @include container(centered);
+  height: calc(100vh - 70px);
+}
+
+.reg-wall {
+  @include wall();
+  min-width: 350px;
+
+  h4 {
+    margin-bottom: 15px;
+  }
+
+  input[type="submit"] {
+    margin: 15px 0;
+    width: 100%;
+  }
+}
 /* -------------------------------------- */
 /* NEW VINYL */
 /* -------------------------------------- */

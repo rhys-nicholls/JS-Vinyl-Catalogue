@@ -27,7 +27,8 @@ html {
   overflow-x: hidden;
   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("/images/records.jpg");
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
 
 body {
   height: 100%;
@@ -223,6 +224,28 @@ input[type="submit"] {
     .login-wall a:hover {
       color: #e67e22;
       transition: color 200ms ease-out; }
+
+/* -------------------------------------- */
+/* REGISTER */
+/* -------------------------------------- */
+.reg-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px); }
+
+.reg-wall {
+  text-align: center;
+  padding: 15px 30px;
+  background-color: rgba(248, 246, 246, 0.9);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  min-width: 350px; }
+  .reg-wall h4 {
+    margin-bottom: 15px; }
+  .reg-wall input[type="submit"] {
+    margin: 15px 0;
+    width: 100%; }
 
 /* -------------------------------------- */
 /* NEW VINYL */
