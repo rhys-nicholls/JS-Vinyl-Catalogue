@@ -1,31 +1,74 @@
 <% include ../partials/header %>
 
-  <div>
-    <img src= <%= vinyl.image %> alt="">
-    <h3>Artist: <%= vinyl.artist %></h3>
-    <h3>Title <%= vinyl.title %></h3>
-    <h3>CatNo: <%= vinyl.labels[0].catno %></h3>
-    <h3>Price $<%= vinyl.price %></h3>
-    <h3>Condition: <%= vinyl.condition %></h3>
-    <table class="table table-sm">
+  <div class="show-container">
+    <div class="show-header">
+        <div class="show-title">
+            <h2><%= vinyl.title %></h2>
+            <h3><%= vinyl.artist %></h3>
+        </div>
+        <div class="show-btns">
+            <a class="btn" href="#">View on Discogs</a>
+            <a href="/collection/<%= vinyl._id %>/edit" class="btn">Edit</a>
+              <form action="/collection/<%= vinyl._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete">           
+        </div>
+    </div>
+    <div class="show-left">
+        <div class="show-img-grid">
+          <div class="left">
+            <img class="show-large" src="<%= vinyl.image %>">	
+          </div>
+          <div class="sright">
+            <img class="show-small" src="https://img.discogs.com/a6EzyxO3tE4194wKQnUaNMOcHqk=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1390420937-2857.jpeg.jpg">
+      
+              <img class="show-small" src="https://img.discogs.com/PpM-WSEv6ClNogFTjgUxX9N2d5Y=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1414824028-6521.jpeg.jpg">	
+          </div>
+        </div>
 
-      <tbody>
-      <% vinyl.tracklist.forEach(track => { %>
-      <tr>
-          <td><%= track.position %> </td>
-          <td><%= track.title %> </td>
-          <td><%= track.duration %></td>
-      </tr>
-      <% }); %>
-      </tbody>
-    </table>
+        <div class="show-info">
+          <span>Genre:</span>  <%= vinyl.genres %><br>
+          <span>Label(s):</span> <% vinyl.labels.forEach((label, i, arr) => { %>
+                <% if(i === (arr.length - 1)) { %>
+                  <%=label.labelName %> 
+                <% } else { %>
+                  <%=label.labelName %> /
+                <% } %>
+                <% }); %> <br>
+          <span>CatNo:</span>  <%= vinyl.labels[0].catno %><br>
+            <span>Price:</span> $<%= vinyl.price %><br>
+            <span>Condition:</span> <%= vinyl.condition %><br>
+        </div>
+    </div>
 
-    <a href="/collection/<%= vinyl._id %>/edit" class="btn">Edit</a>
+    <div class="show-right">
+        <div class="show-tracklist">
+          <h4>Tracklist</h4>
+            <table>
+              <thead>
+                  <tr>
+                      <th>Position</th>
+                      <th>Title</th>
+                      <th>Duration</th>
+                    </tr>
+              </thead>
+                <tbody>
+                  
+                <% vinyl.tracklist.forEach(track => { %>
+                <tr>
+                    <td><%= track.position %> </td>
+                    <td><%= track.title %> </td>
+                    <td><%= track.duration %></td>
+                </tr>
+                <% }); %>
+                </tbody>
+              </table>
+        </div>
 
-    <form action="/collection/<%= vinyl._id %>?_method=DELETE" method="POST">
-      <button class="btn">Delete</button>
-   </form>
-
+        <div class="show-discogs-link">
+        </div>
+      </div>    
+    </div>
   </div>
-</body>
+  </body>
+
 </html>
