@@ -38,9 +38,18 @@ body {
 /* REUSABLES */
 /* -------------------------------------- */
 /*--- Headings ---*/
+h2 {
+  font-weight: 400; }
+
+h3,
+h4 {
+  font-weight: 300; }
+
+h2 {
+  color: #e67e22; }
+
 h4 {
   color: #4a586a;
-  font-weight: 300;
   font-size: 110%;
   word-spacing: 2px; }
 
@@ -52,6 +61,7 @@ h4 {
   color: white;
   border: solid #e67e22 1px;
   border-radius: 0.25rem;
+  text-align: center;
   transition: border 0.3s ease-in, background-color 0.3s ease-in;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 1.5px 1px rgba(0, 0, 0, 0.22); }
   .btn:hover {
@@ -277,6 +287,7 @@ input[type="submit"] {
   margin: 15px auto;
   width: 90%;
   background: white;
+  justify-content: space-between;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
 
 .show-header {
@@ -346,7 +357,7 @@ input[type="submit"] {
 
 .show-right {
   display: flex;
-  flex: 0 0 48%;
+  flex: 0 0 46%;
   margin: 0 15px 15px;
   padding: 15px 45px;
   background: white;
@@ -367,3 +378,83 @@ input[type="submit"] {
   .show-tracklist th,
   .show-tracklist td {
     border-bottom: 1px solid #ddd; }
+
+/* -------------------------------------- */
+/* COLLECTION */
+/* -------------------------------------- */
+.collection-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  flex-direction: column; }
+
+.collection-header {
+  width: 90vw;
+  background: white;
+  background: -moz-radial-gradient(circle, white 40%, #cfc8cd 100%);
+  background: -webkit-radial-gradient(circle, white 40%, #cfc8cd 100%);
+  background: radial-gradient(circle, white 40%, #cfc8cd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#cfc8cd",GradientType=1);
+  text-align: center;
+  border-radius: 0.25rem;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  .collection-header a {
+    text-decoration: none;
+    color: #4a586a;
+    transition: color 200ms ease-in;
+    font-size: 150%; }
+    .collection-header a:hover {
+      color: #e67e22;
+      transition: color 200ms ease-out; }
+
+.collection-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90vw; }
+  @media (max-width: 767px) {
+    .collection-cards {
+      width: 100vw; } }
+
+.collection-card {
+  flex: 0 1 18%;
+  background: white;
+  min-width: 240px;
+  margin: 7.5px;
+  border: 1px solid #d3d3d3;
+  border-radius: 0.25rem;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  @media (max-width: 767px) {
+    .collection-card {
+      flex: 0 1 46%;
+      min-width: 120px; } }
+  .collection-card img {
+    width: 100%;
+    padding: 5px; }
+  .collection-card .content {
+    padding: 5px 10px 10px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    @media (max-width: 767px) {
+      .collection-card .content {
+        line-height: 1.2; } }
+  .collection-card .btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px; }
+    @media (max-width: 767px) {
+      .collection-card .btn {
+        font-size: 80%;
+        padding: 5px; } }
+  .collection-card .title {
+    font-size: 120%;
+    font-weight: 400; }
+    @media (max-width: 767px) {
+      .collection-card .title {
+        font-size: 100%; } }
+  @media (max-width: 767px) {
+    .collection-card .artist {
+      font-size: 80%; } }
