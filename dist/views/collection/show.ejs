@@ -1,86 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Vinyl Catalogue</title>
-</head>
-<body>
-  <div>
-    <img src= <%= vinyl.image %> alt="">
-    <h3>Artist: <%= vinyl.artist %></h3>
-    <h3>Title <%= vinyl.title %></h3>
-    <h3>CatNo: <%= vinyl.labels[0].catno %></h3>
-    <h3>Price $<%= vinyl.price %></h3>
-    <h3>Condition: <%= vinyl.condition %></h3>
-    <table class="table table-sm">
+<% include ../partials/header %>
 
-      <tbody>
-      <% vinyl.tracklist.forEach(track => { %>
-      <tr>
-          <td><%= track.position %> </td>
-          <td><%= track.title %> </td>
-          <td><%= track.duration %></td>
-      </tr>
-      <% }); %>
-      </tbody>
-    </table>
+  <div class="show-container">
+    <div class="show-header">
+        <div class="show-title">
+            <h2><%= vinyl.title %></h2>
+            <h3><%= vinyl.artist %></h3>
+        </div>
+        <div class="show-btns">
+            <a class="btn" href="#">Discogs Link</a>
+            <a href="/collection/<%= vinyl._id %>/edit" class="btn">Edit</a>
+              <form action="/collection/<%= vinyl._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete">           
+        </div>
+    </div>
+    <div class="show-left">
+        <div class="show-img-grid">
+          <div class="left">
+            <img class="show-large" src="<%= vinyl.image %>">	
+          </div>
+          <div class="sright">
+            <img class="show-small" src="https://img.discogs.com/a6EzyxO3tE4194wKQnUaNMOcHqk=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1390420937-2857.jpeg.jpg">
+      
+              <img class="show-small" src="https://img.discogs.com/PpM-WSEv6ClNogFTjgUxX9N2d5Y=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1414824028-6521.jpeg.jpg">	
+          </div>
+        </div>
 
-    <a href="/collection/<%= vinyl._id %>/edit" class="btn">Edit</a>
+        <div class="show-info">
+          <span>Genre:</span>  <%= vinyl.genres %><br>
+          <span>Label(s):</span> <% vinyl.labels.forEach((label, i, arr) => { %>
+                <% if(i === (arr.length - 1)) { %>
+                  <%=label.labelName %> 
+                <% } else { %>
+                  <%=label.labelName %> /
+                <% } %>
+                <% }); %> <br>
+          <span>CatNo:</span>  <%= vinyl.labels[0].catno %><br>
+            <span>Price:</span> $<%= vinyl.price %><br>
+            <span>Condition:</span> <%= vinyl.condition %><br>
+        </div>
+    </div>
 
-    <form action="/collection/<%= vinyl._id %>?_method=DELETE" method="POST">
-      <button class="btn">Delete</button>
-   </form>
-
+    <div class="show-right">
+        <div class="show-tracklist">
+          <h4>Tracklist</h4>
+            <table>
+              <thead>
+                  <tr>
+                      <th>Position</th>
+                      <th>Title</th>
+                      <th>Duration</th>
+                    </tr>
+              </thead>
+                <tbody>
+                  
+                <% vinyl.tracklist.forEach(track => { %>
+                <tr>
+                    <td><%= track.position %> </td>
+                    <td><%= track.title %> </td>
+                    <td><%= track.duration %></td>
+                </tr>
+                <% }); %>
+                </tbody>
+              </table>
+        </div>
+      </div>    
+    </div>
   </div>
 
-  <style>
+  <script src="../../js/tumbnails.js"></script>
 
-    html,
-    body {
-      color: #555;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
+  </body>
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .btn {
-      color: #ccc;
-      background-color: white;
-      padding: 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      border: solid #ccc 1px;
-      border-radius: .25rem; 
-    }
-
-    a:link,
-    a:visited {
-      color: #ccc;
-      padding: 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      border: solid #ccc 1px;
-      border-radius: .25rem;
-      transition: background-color 0.2s, color 0.2s;
-    }
-
-
-    a:hover,
-    a:active {
-      background-color: #ccc;
-      color: white;
-    }
-  </style>
-</body>
 </html>
