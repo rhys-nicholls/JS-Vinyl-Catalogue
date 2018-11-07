@@ -73,6 +73,10 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  @include breakpoint(phone) {
+    font-size: 16px;
+  }
 }
 
 body {
@@ -85,9 +89,6 @@ body {
 /* -------------------------------------- */
 
 /*--- Headings ---*/
-h2 {
-  font-weight: 400;
-}
 h3,
 h4 {
   font-weight: 300;
@@ -95,6 +96,18 @@ h4 {
 
 h2 {
   color: $accent-color;
+  font-size: 180%;
+  font-weight: 400;
+
+  @include breakpoint(phone) {
+    font-size: 140%;
+  }
+}
+
+h3 {
+  @include breakpoint(phone) {
+    font-size: 110%;
+  }
 }
 
 h4 {
@@ -106,7 +119,7 @@ h4 {
 /*--- Buttons ---*/
 .btn {
   text-decoration: none;
-  padding: 8px 30px;
+  padding: 8px 21px;
   background-color: $accent-color;
   color: white;
   border: solid $accent-color 1px;
@@ -120,6 +133,8 @@ h4 {
     border: 1px solid $tertiary-color;
     transition: border 0.3s ease-out, background-color 0.3s ease-out;
   }
+
+
 }
 
 /*--- Inputs ---*/
@@ -358,6 +373,11 @@ input[type="submit"] {
   @include wall();
   min-width: 500px;
 
+  @include breakpoint(phone) {
+    min-width: 300px;
+    width: 95%;
+  }
+
   input[type="submit"] {
     margin: 15px 0;
     width: 100%;
@@ -376,12 +396,21 @@ input[type="submit"] {
   background: white;
   justify-content: space-between;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+  @include breakpoint(phone) {
+    width: 96%;
+    flex-direction: column;
+  }
 }
 
 .show-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  
+  @include breakpoint(phone) {
+    flex-direction: column;
+  }
 }
 
 .show-title {
@@ -398,6 +427,10 @@ input[type="submit"] {
   h3 {
     color: $tertiary-color;
   }
+
+  @include breakpoint(phone) {
+    margin-bottom: 0;
+  }
 }
 
 .show-btns {
@@ -410,6 +443,10 @@ input[type="submit"] {
 
   .btn {
     margin: 0 7.5px;
+  }
+
+  @include breakpoint(phone) {
+    justify-content: space-around;
   }
 }
 
@@ -428,6 +465,10 @@ input[type="submit"] {
   padding: 7px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 1.5px 1px rgba(0, 0, 0, 0.22);
 
+  @include breakpoint(phone) {
+    flex-direction: column;
+  }
+
   .left {
     flex: 0 0 76%;
     justify-content: center;
@@ -435,7 +476,6 @@ input[type="submit"] {
 
   .right {
     display: flex;
-    flex-direction: column;
     flex: 0 0 24%;
   }
 }
@@ -453,6 +493,11 @@ input[type="submit"] {
   padding: 2px;
   border: 1px solid $primary-color;
   background: white;
+
+  @include breakpoint(phone) {
+    width: 48%;
+    margin-bottom: 0; 
+  }
 
   &:hover {
     transform: scale(1.02);
@@ -478,6 +523,10 @@ input[type="submit"] {
   color: white;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 1.5px 1px rgba(0, 0, 0, 0.22);
+
+  @include breakpoint(phone) {
+    padding: 7px;
+  }
 }
 
 .show-tracklist {
@@ -513,16 +562,6 @@ input[type="submit"] {
 .collection-header {
   width: 90vw;
   background: rgb(255, 255, 255);
-  background: -moz-radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(207, 200, 205, 1) 100%
-  );
-  background: -webkit-radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(207, 200, 205, 1) 100%
-  );
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 1) 40%,
@@ -540,6 +579,10 @@ input[type="submit"] {
     color: $tertiary-color;
     transition: color 200ms ease-in;
     font-size: 150%;
+
+    @include breakpoint(phone) {
+      font-size: 110%;
+    }
 
     &:hover {
       color: $accent-color;
