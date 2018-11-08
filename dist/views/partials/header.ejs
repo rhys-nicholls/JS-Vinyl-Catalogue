@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +10,37 @@
   <link href="https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../../css/style.css">
 </head>
+
 <body>
 
   <nav class="nav-bar">
-      <span class="nav-toggle"><i class="icon ion-md-menu"></i></span>
-      <a href="" class="nav-title"><i class="icon ion-md-disc"></i>   Vinyl<span>Catalogue</span></a>
-      <ul class="nav-main">
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/collection">Collection</a>
-        </li>
-        <li class="nav-right">
-          <a href="/logout">Logout</a>
-        </li>
-      </ul>
-    </nav>
+    <span class="nav-toggle"><i class="icon ion-md-menu"></i></span>
+    <a href="" class="nav-title"><i class="icon ion-md-disc"></i> Vinyl<span>Catalogue</span></a>
+    <ul class="nav-main">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/collection">Collection</a>
+      </li>
+      <li class="nav-right">
+        <a href="/logout">Logout</a>
+      </li>
+    </ul>
+  </nav>
 
-    <script src="../../js/nav.js"></script>
+  <div class="alert">
+    <% if(error && error.length > 0){ %>
+    <div class="alert-error" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+    <div class="alert-success" role="alert">
+      <%= success %>
+    </div>
+    <% } %>
+
+  </div>
+
+  <script src="../../js/nav.js"></script>

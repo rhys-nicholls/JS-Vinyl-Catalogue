@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
+
 const User = require('./models/user');
 
 const app = express();
@@ -18,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', './dist/views');
 app.use(express.static('dist'));
 app.use(methodOverride('_method'));
+app.use(flash());
 
+// Passport Setup
 app.use(require('express-session')({
   secret: 'my name is heman',
   resave: false,
@@ -33,6 +37,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
   next();
 });
 

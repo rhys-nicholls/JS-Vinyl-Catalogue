@@ -28,7 +28,7 @@
         <div class="show-info">
           <span>Genre:</span>  <%= vinyl.genres %><br>
           <span>Label(s):</span> <% vinyl.labels.forEach((label, i, arr) => { %>
-                <% if(i === (arr.length - 1)) { %>
+              <% if(i === (arr.length - 1)) { %>
                   <%=label.labelName %> 
                 <% } else { %>
                   <%=label.labelName %> /
