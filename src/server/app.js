@@ -5,14 +5,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
-
+const session = require('express-session');
 const User = require('./models/user');
-
-const app = express();
-
-// Require Routes
 const accountRoutes = require('./routes/account');
 const collectionRoutes = require('./routes/collection');
+
+const app = express();
 
 mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true });
 app.set('view engine', 'ejs');
@@ -23,7 +21,7 @@ app.use(methodOverride('_method'));
 app.use(flash());
 
 // Passport Setup
-app.use(require('express-session')({
+app.use(session({
   secret: 'my name is heman',
   resave: false,
   saveUninitialized: false,
