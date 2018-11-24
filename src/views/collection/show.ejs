@@ -10,18 +10,18 @@
             <a class="btn" href="#">Discogs Link</a>
             <a href="/collection/<%= vinyl._id %>/edit" class="btn">Edit</a>
               <form action="/collection/<%= vinyl._id %>?_method=DELETE" method="POST">
-                <input type="submit" value="Delete">           
+                <input type="submit" value="Delete">
         </div>
     </div>
     <div class="show-left">
         <div class="show-img-grid">
           <div class="left">
-            <img class="show-large" src="<%= vinyl.image %>">	
+            <img class="show-large" src="<%= vinyl.image %>">
           </div>
           <div class="sright">
             <img class="show-small" src="https://img.discogs.com/a6EzyxO3tE4194wKQnUaNMOcHqk=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1390420937-2857.jpeg.jpg">
-      
-              <img class="show-small" src="https://img.discogs.com/PpM-WSEv6ClNogFTjgUxX9N2d5Y=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1414824028-6521.jpeg.jpg">	
+
+              <img class="show-small" src="https://img.discogs.com/PpM-WSEv6ClNogFTjgUxX9N2d5Y=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-5290173-1414824028-6521.jpeg.jpg">
           </div>
         </div>
 
@@ -29,7 +29,7 @@
           <span>Genre:</span>  <%= vinyl.genres %><br>
           <span>Label(s):</span> <% vinyl.labels.forEach((label, i, arr) => { %>
               <% if(i === (arr.length - 1)) { %>
-                  <%=label.labelName %> 
+                  <%=label.labelName %>
                 <% } else { %>
                   <%=label.labelName %> /
                 <% } %>
@@ -52,7 +52,7 @@
                     </tr>
               </thead>
                 <tbody>
-                  
+
                 <% vinyl.tracklist.forEach(track => { %>
                 <tr>
                     <td><%= track.position %> </td>
@@ -63,11 +63,11 @@
                 </tbody>
               </table>
         </div>
-      </div>    
+      </div>
     </div>
   </div>
 
-  <script src="../../js/tumbnails.js"></script>
+  <script src="/js/thumbnails.js"></script>
 
   </body>
 
