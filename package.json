@@ -7,6 +7,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
+    "dev:alt": "nodemon src/server/app.js & npm run sass:compile & wait",
     "sass:compile": "node-sass --watch dist/css/style.scss dist/css/style.css"
   },
   "repository": {
