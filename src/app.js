@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.resolve(__dirname, './views'));
-app.use(express.static('dist'));
+app.use(express.static(path.resolve(__dirname, './assets')));
 app.use(methodOverride('_method'));
 app.use(flash());
 
