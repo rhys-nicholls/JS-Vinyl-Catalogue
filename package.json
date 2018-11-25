@@ -2,12 +2,10 @@
   "name": "vinyl-catalogue",
   "version": "1.0.0",
   "description": "Vinyl Catalogue Webapp",
-  "main": "src/server/app.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
-    "sass:compile": "node-sass --watch dist/css/style.scss dist/css/style.css"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js & npm run sass:compile & wait",
+    "sass:compile": "node-sass --watch src/assets/css/style.scss src/assets/css/style.css"
   },
   "repository": {
     "type": "git",
@@ -20,15 +18,10 @@
   },
   "homepage": "https://github.com/rhys-nicholls/JS-Vinyl-Catalogue#readme",
   "devDependencies": {
-    "eslint": "^5.5.0",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.4",
-    "webpack": "^4.10.1",
-    "webpack-cli": "^2.1.4",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-node-externals": "^1.7.2"
+    "node-sass": "^4.9.4"
   },
   "dependencies": {
     "axios": "^0.18.0",

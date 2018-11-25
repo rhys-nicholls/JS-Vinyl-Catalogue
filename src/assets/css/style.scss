@@ -6,7 +6,7 @@
 $primary-color: #cfc8cd;
 $secondary-color: #b6b0b2;
 $tertiary-color: #4a586a;
-$accent-color: #e67e22;
+$accent-color: #e67e21;
 
 /* -------------------------------------- */
 /* MIXINS */
@@ -407,7 +407,7 @@ input[type="submit"] {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  
+
   @include breakpoint(phone) {
     flex-direction: column;
   }
@@ -496,7 +496,7 @@ input[type="submit"] {
 
   @include breakpoint(phone) {
     width: 48%;
-    margin-bottom: 0; 
+    margin-bottom: 0;
   }
 
   &:hover {
