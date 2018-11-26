@@ -2,13 +2,9 @@ const express = require('express');
 const middleware = require('../middleware/index');
 const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
+const keys = require('../config/keys');
 
 const router = express.Router();
-
-// To be hidden when in production
-const key = 'mzyVxGVrLGQwIjqViCeS'; // Key for DiscogsAPI
-const secret = 'rKMIXAiOABcXlIVTuiBDunruiYCEXzqr'; // Secret for Discogs API
-// const token = 'jWpfVnLlYPqruBobYHpgftCanMPOzkDXRgkymMlN'; // User token for DiscogsAPI
 
 // INDEX - Show all Vinyls in collection
 router.get('/', middleware.isLoggedIn, (req, res) => {
@@ -28,8 +24,8 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
     country: req.body.country,
     format: 'vinyl', // Vinyl format used to narrow down search results
     type: 'release', // Release type used to narrow down search results
-    key,
-    secret,
+    key: keys.discogsKey,
+    secret: keys.discogsSecret,
   };
 
   Discogs.createVinyl(params).then((result) => {

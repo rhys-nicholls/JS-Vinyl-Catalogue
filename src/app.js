@@ -10,10 +10,11 @@ const path = require('path');
 const User = require('./models/user');
 const accountRoutes = require('./routes/account');
 const collectionRoutes = require('./routes/collection');
+const keys = require('./config/keys');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/vinyl_collection', { useNewUrlParser: true });
+mongoose.connect(keys.mongodbURI, { useNewUrlParser: true });
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.resolve(__dirname, './views'));
@@ -23,7 +24,7 @@ app.use(flash());
 
 // Passport Setup
 app.use(session({
-  secret: 'my name is heman',
+  secret: keys.passportSecret,
   resave: false,
   saveUninitialized: false,
 }));
@@ -49,4 +50,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(3000, () => console.log('Listening on port 3000'));
+const port = process.env.PORT || 5001;
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
