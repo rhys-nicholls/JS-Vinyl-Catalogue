@@ -11,7 +11,7 @@
     <div class="collection-cards">
         <% vinyls.forEach(vinyl => { %>
           <div class="collection-card">
-            <img src="<%= vinyl.image %>">
+            <img src="<%= vinyl.images[0].uri %>">
             <div class="content">
               <span class="title"><%= vinyl.title %></span><br>
               <span class="artist"><%= vinyl.artist %></span>

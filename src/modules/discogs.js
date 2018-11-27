@@ -26,7 +26,7 @@ Discogs.getId = params => Discogs.search(params)
  * @param {Object} params to be passed to .getID
  */
 Discogs.getRelease = params => Discogs.getId(params)
-  .then(id => axios.get(`https://api.discogs.com/releases/${id}`))
+  .then(id => axios.get(`https://api.discogs.com/releases/${id}?key=${params.key}&secret=${params.secret}`))
   .then(res => res.data)
   .catch(err => console.error(err));
 
@@ -75,14 +75,15 @@ Discogs.getLabels = params => Discogs.getRelease(params)
   .catch(err => console.error(err));
 
 /**
- * Get cover image for a release.
- * Currently no image url data being returned from Discogs API when getting a releases data
- * Workaround - use cover image from first result exposed when carrying out initial search
+ * Get images for a release. Images are filtered to ensure they are roughly square.
+ * Now fixed. The Discogs key and secret not being appended to the url in getRelease
  * @param {Object} params
  */
-Discogs.getImage = params => Discogs.search(params)
-  .then(res => res.results[0].cover_image)
-  .catch(err => console.error(err));
+Discogs.getImages = params => Discogs.getRelease(params)
+  .then(res => res.images
+    .filter(image => image.height >= (image.width - 15)
+        && image.height <= (image.width + 15)))
+  .catch(err => console.log(err));
 
 /**
  * Get current lowest price.
@@ -109,17 +110,21 @@ Discogs.createVinyl = params => Promise.all([
   Discogs.getTracklist(params),
   Discogs.getGenres(params),
   Discogs.getLabels(params),
-  Discogs.getImage(params),
+  Discogs.getImages(params),
 ])
-  .then(res => ({
-    discogsId: res[0],
-    artist: res[1].artist,
-    title: res[1].title,
-    tracklist: res[2],
-    genres: res[3],
-    labels: res[4],
-    image: res[5],
-  }))
+  .then((res) => {
+    const newVinyl = {
+      discogsId: res[0],
+      artist: res[1].artist,
+      title: res[1].title,
+      tracklist: res[2],
+      genres: res[3],
+      labels: res[4],
+      images: res[5],
+    };
+    console.log(newVinyl);
+    return newVinyl;
+  })
   .catch(err => console.error(err));
 
 module.exports = Discogs; // Export Discogs Object

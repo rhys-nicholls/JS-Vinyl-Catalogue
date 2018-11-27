@@ -4,7 +4,6 @@ const vinylSchema = new mongoose.Schema({
   discogsId: String,
   artist: String,
   title: String,
-  image: String,
   genres: [String],
   condition: String,
   labels: [
@@ -18,6 +17,13 @@ const vinylSchema = new mongoose.Schema({
       position: String,
       title: String,
       duration: String,
+    },
+  ],
+  images: [
+    {
+      uri: String,
+      height: String,
+      width: String,
     },
   ],
   owner: {
