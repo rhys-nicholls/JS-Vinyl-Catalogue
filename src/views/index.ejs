@@ -12,7 +12,7 @@
     <div class="login-container">
       <div class="login-wall">
         <img src="https://image.flaticon.com/icons/svg/187/187518.svg" alt="Icon">
-  
+        <% if(!currentUser){ %>
         <h4>Sign in to access your collection</h4>
         <form action="/login" method="POST">
           <div class="form-group">
@@ -22,12 +22,14 @@
           <div class="form-group">
             <input class="login-control" type="password" name="password">
             <label for="password">Password</label>
-          </div>
-  
-  
+          </div>  
           <input type="submit" value="Login">
         </form>
         <a class="login-register" href="/register" class="new-account">Create an account </a>
+        <% } else { %>
+          <h2>Welcome <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %></h2>
+          <a class="btn" href="/collection">View your collection</a>
+        <% } %>
       </div>
     </div>
   </body>

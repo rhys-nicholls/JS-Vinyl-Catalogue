@@ -46,7 +46,7 @@ h4 {
   font-weight: 300; }
 
 h2 {
-  color: #e67e22;
+  color: #e67e21;
   font-size: 180%;
   font-weight: 400; }
   @media (max-width: 767px) {
@@ -66,9 +66,9 @@ h4 {
 .btn {
   text-decoration: none;
   padding: 8px 21px;
-  background-color: #e67e22;
+  background-color: #e67e21;
   color: white;
-  border: solid #e67e22 1px;
+  border: solid #e67e21 1px;
   border-radius: 0.25rem;
   text-align: center;
   transition: border 0.3s ease-in, background-color 0.3s ease-in;
@@ -92,9 +92,9 @@ input[type="submit"] {
   font-weight: 300;
   font-size: 100%;
   text-decoration: none;
-  background-color: #e67e22;
+  background-color: #e67e21;
   color: white;
-  border: solid #e67e22 1px;
+  border: solid #e67e21 1px;
   border-radius: 0.25rem;
   transition: border 0.3s ease-in, background-color 0.3s ease-in;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 1.5px 1px rgba(0, 0, 0, 0.22); }
@@ -129,11 +129,11 @@ input[type="submit"] {
     width: 100%; }
     .form-group input:focus,
     .form-group select:focus {
-      border-bottom: 2px solid #e67e22;
+      border-bottom: 2px solid #e67e21;
       outline: none; }
       .form-group input:focus + label,
       .form-group select:focus + label {
-        color: #e67e22; }
+        color: #e67e21; }
 
 /* -------------------------------------- */
 /* NAV BAR */
@@ -176,7 +176,7 @@ input[type="submit"] {
       .nav-main a {
         margin-left: 40px; } }
     .nav-main a:hover {
-      color: #e67e22;
+      color: #e67e21;
       transition: color 200ms ease-out; }
 
 .nav-title {
@@ -188,7 +188,7 @@ input[type="submit"] {
   color: #b6b0b2; }
   .nav-title span {
     font-weight: 400;
-    color: #e67e22; }
+    color: #e67e21; }
   .nav-title i {
     font-size: 150%;
     color: #cfc8cd;
@@ -231,8 +231,11 @@ input[type="submit"] {
     height: 75px;
     margin: auto;
     margin-bottom: 15px; }
-  .login-wall h4 {
+  .login-wall h4,
+  .login-wall h2 {
     margin-bottom: 15px; }
+  .login-wall h2 {
+    color: #4a586a; }
   .login-wall input[type="submit"] {
     margin: 15px 0;
     width: 100%; }
@@ -241,7 +244,7 @@ input[type="submit"] {
     text-decoration: none;
     transition: color 200ms ease-in; }
     .login-wall a:hover {
-      color: #e67e22;
+      color: #e67e21;
       transition: color 200ms ease-out; }
 
 /* -------------------------------------- */
@@ -321,7 +324,7 @@ input[type="submit"] {
   .show-title h3 {
     display: inline-block; }
   .show-title h2 {
-    color: #e67e22; }
+    color: #e67e21; }
   .show-title h3 {
     color: #4a586a; }
   @media (max-width: 767px) {
@@ -442,13 +445,13 @@ input[type="submit"] {
       .collection-header a {
         font-size: 110%; } }
     .collection-header a:hover {
-      color: #e67e22;
+      color: #e67e21;
       transition: color 200ms ease-out; }
 
 .collection-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 90vw; }
   @media (max-width: 767px) {
     .collection-cards {

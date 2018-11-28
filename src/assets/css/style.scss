@@ -318,8 +318,13 @@ input[type="submit"] {
     margin-bottom: 15px;
   }
 
-  h4 {
+  h4,
+  h2 {
     margin-bottom: 15px;
+  }
+
+  h2 {
+    color: $tertiary-color;
   }
 
   input[type="submit"] {
@@ -594,7 +599,7 @@ input[type="submit"] {
 .collection-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 90vw;
   @include breakpoint(phone) {
     width: 100vw;
