@@ -7,7 +7,10 @@
       <h3>Use this webapp to keep track of your vinyl collection</h3><br>
       <a href="/collection/new">Add a new vinyl to your collection</a>
     </div>
+  </div>
+    <% include ../partials/notification %>
 
+  <div class="collection-container">
     <div class="collection-cards">
         <% vinyls.forEach(vinyl => { %>
           <div class="collection-card">

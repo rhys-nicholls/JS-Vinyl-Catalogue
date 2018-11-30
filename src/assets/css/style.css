@@ -294,7 +294,7 @@ input[type="submit"] {
     width: 100%; }
 
 /* -------------------------------------- */
-/* SHOWW VINYL */
+/* SHOW VINYL */
 /* -------------------------------------- */
 .show-container {
   display: flex;
@@ -497,3 +497,28 @@ input[type="submit"] {
   @media (max-width: 767px) {
     .collection-card .artist {
       font-size: 80%; } }
+
+/* -------------------------------------- */
+/* NOTIFICATION */
+/* -------------------------------------- */
+.notification-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center; }
+
+.notification {
+  z-index: 10;
+  text-align: center;
+  width: 30%;
+  padding: 5px;
+  border-radius: 0.25rem;
+  margin-top: 5px; }
+
+.notification-error {
+  color: #ff4d4d;
+  background-color: #f8d7da; }
+
+.notification-success {
+  color: #38a138;
+  background-color: #c2f0c2; }

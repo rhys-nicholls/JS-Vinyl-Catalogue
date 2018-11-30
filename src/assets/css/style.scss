@@ -390,7 +390,7 @@ input[type="submit"] {
 }
 
 /* -------------------------------------- */
-/* SHOWW VINYL */
+/* SHOW VINYL */
 /* -------------------------------------- */
 
 .show-container {
@@ -661,4 +661,34 @@ input[type="submit"] {
       font-size: 80%;
     }
   }
+}
+
+/* -------------------------------------- */
+/* NOTIFICATION */
+/* -------------------------------------- */
+
+.notification-container {
+  @include container(centered);
+}
+
+.notification {
+  z-index: 10;
+  text-align: center; 
+  width: 30%;
+  padding: 5px;
+  border-radius: 0.25rem;
+  margin-top: 5px;
+  @include breakpoint(mobile) {
+    width: 100%;
+  }
+}
+
+.notification-error {
+  color: #ff4d4d;
+  background-color: #f8d7da;
+}
+
+.notification-success {
+  color:  #38a138;
+  background-color: #c2f0c2;
 }

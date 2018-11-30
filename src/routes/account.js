@@ -17,12 +17,12 @@ router.post('/register', (req, res) => {
   User.register(newUser, req.body.password, (err, user) => { // eslint-disable-line
     if (err) {
       console.log(err);
-      req.flash('error', err.mesaage);
+      req.flash('error', err.message);
       return res.redirect('register');
     }
     passport.authenticate('local')(req, res, () => {
-      req.flash('success', 'Registration Sucessful');
-      res.redirect('collection/');
+      req.flash('success', 'Registration sucessful');
+      res.redirect('collection');
     });
   });
 });
@@ -39,6 +39,7 @@ router.post('/login', passport.authenticate('local',
     failureRedirect: 'login',
   }), (req, res) => {}); // eslint-disable-line
 
+// Logout Logic
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');

@@ -1,0 +1,10 @@
+<div class="notification-container">
+  <% if(error && error.length > 0){ %>
+    <div class="notification notification-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success && success.length > 0){ %>
+    <div class="notification notification-success"><%= success %></div>
+  <% } %>
+</div>
