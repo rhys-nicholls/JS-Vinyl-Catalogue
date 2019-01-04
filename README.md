@@ -2,6 +2,7 @@
 Vinyl catalogue. A web app that allows users to catalogue their vinyl collection, using data from the Discogs API (https://www.discogs.com/developers/)
 
 Created using:
+
 **NodeJS, Express** - Back End
 
 **MongoDB/ mLab** - Database
@@ -9,6 +10,7 @@ Created using:
 **EJS, CSS** - Front End.
 
 **Live Version found at:** 
+
 https://whispering-eyrie-68487.herokuapp.com/
 
 ## Project Status
