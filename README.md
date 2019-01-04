@@ -3,7 +3,9 @@ Vinyl catalogue. A web app that allows users to catalogue their vinyl collection
 
 Created using:
 **NodeJS, Express** - Back End
+
 **MongoDB/ mLab** - Database
+
 **EJS, CSS** - Front End.
 
 **Live Version found at:** 
