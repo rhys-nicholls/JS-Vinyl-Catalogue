@@ -22,6 +22,7 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
     title: req.body.title,
     artist: req.body.artist,
     country: req.body.country,
+    barcode: req.body.barcode,
     format: 'vinyl', // Vinyl format used to narrow down search results
     type: 'release', // Release type used to narrow down search results
     key: keys.discogsKey,

@@ -6,15 +6,15 @@
     <h4>Add a vinyl to your collection</h4>
     <form action="/collection/new" method="POST">
       <div class="form-group">
-        <input type="text" name="title" id="title" required>
+        <input type="text" name="title" id="title">
         <label for="title">Title</label>
       </div>
       <div class="form-group">
-        <input type="text" name="artist" id="artist" required>
+        <input type="text" name="artist" id="artist">
         <label for="artist">Artist</label>
       </div>
       <div class="form-group">
-        <select name="country" id="country" required>
+        <select name="country" id="country">
           <option>UK</option>
           <option>Europe</option>
           <option>UK/Europe</option>
@@ -33,6 +33,13 @@
           <option>P - Poor</option>
         </select>
         <label for="condition">Condition</label>
+      </div>
+
+      <h4>Or search by barcode</h4>
+
+      <div class="form-group">
+          <input type="text" name="barcode" id="barcode">
+          <label for="title">Barcode</label>
       </div>
 
       <input type="submit" value="Submit">
