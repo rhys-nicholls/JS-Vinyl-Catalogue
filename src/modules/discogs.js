@@ -86,6 +86,14 @@ Discogs.getImages = params => Discogs.getRelease(params)
   .catch(err => console.log(err));
 
 /**
+ * Get Discogs page url
+ * @param {Object} params
+ */
+Discogs.getUri = params => Discogs.getRelease(params)
+  .then(res => res.uri)
+  .catch(err => console.error(err));
+
+/**
  * Get current lowest price.
  * TODO: The Discogs API only returns the lowest price for a release. Possibly scape the actual
  * release pageto get the median price for a release to give a more accurate representation of
@@ -111,6 +119,7 @@ Discogs.createVinyl = params => Promise.all([
   Discogs.getGenres(params),
   Discogs.getLabels(params),
   Discogs.getImages(params),
+  Discogs.getUri(params),
 ])
   .then((res) => {
     const newVinyl = {
@@ -121,6 +130,7 @@ Discogs.createVinyl = params => Promise.all([
       genres: res[3],
       labels: res[4],
       images: res[5],
+      uri: res[6],
     };
     console.log(newVinyl);
     return newVinyl;

@@ -6,6 +6,7 @@ const vinylSchema = new mongoose.Schema({
   title: String,
   genres: [String],
   condition: String,
+  uri: String,
   labels: [
     {
       labelName: String,
