@@ -20,8 +20,11 @@
             <img class="show-large" src="<%= vinyl.images[0].uri %>">
           </div>
           <div class="sright">
-            <img class="show-small" src="<%= vinyl.images[1].uri %>">
-            <img class="show-small" src="<%= vinyl.images[2].uri %>">
+              <% vinyl.images.forEach((image, i, arr) => { %>
+                <% if(arr.length > 1 && (i > 0 && i < 3)) { %>
+                  <img class="show-small" src="<%= image.uri %>">
+                <% } %>
+              <%  }); %>
           </div>
         </div>
 
