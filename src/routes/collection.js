@@ -17,7 +17,7 @@ router.get('/new', middleware.isLoggedIn, (req, res) => res.render('collection/n
 
 // CREATE - Add new Vinyl to db
 router.post('/new', middleware.isLoggedIn, (req, res) => {
-// Params to be added to Discogs API call
+  // Params to be added to Discogs API call
   const params = {
     title: req.body.title,
     artist: req.body.artist,
@@ -30,22 +30,29 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
   };
 
   Discogs.createVinyl(params).then((result) => {
-    Vinyl.create(result, (err, newlyCreated) => {
-      if (err) {
-        console.error(err);
-        req.flash('error', 'Could not find Vinyl. Try selecting a different region');
-      } else {
-        const newVinyl = newlyCreated;
-        newVinyl.condition = req.body.condition;
-        newVinyl.owner.id = req.user.id;
-        newVinyl.save();
-        Discogs.getPrice(result.discogsId).then((price) => {
-          req.flash('success', 'Vinyl Successfully Added');
-          res.render('collection/show', { vinyl: newlyCreated, price });
-        });
-      }
+    if (result === undefined) {
+      req.flash('error', 'Could not find Vinyl. Try selecting a different region');
+      res.redirect('/collection');
+    } else {
+      Vinyl.create(result, (err, newlyCreated) => {
+        if (err) {
+          console.error(err);
+        } else {
+          const newVinyl = newlyCreated;
+          newVinyl.condition = req.body.condition;
+          newVinyl.owner.id = req.user.id;
+          newVinyl.save();
+          Discogs.getPrice(result.discogsId).then((price) => {
+            res.render('collection/show', { vinyl: newlyCreated, price });
+          });
+        }
+      });
+    }
+  })
+    .catch(() => {
+      req.flash('error', 'Could not find Vinyl. Try selecting a different region');
+      res.redirect('/collection');
     });
-  });
 });
 
 // SHOW - for an individual vinyl
