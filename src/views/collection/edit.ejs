@@ -1,31 +1,32 @@
 <% include ../partials/header %>
 <% include ../partials/notification %>
 
-  <div class="container">
-    <h2>Edit <%=vinyl.artist %> - <%= vinyl.title %></h2>
-    <div>
+  <div class="edit-container">
+    <div class="edit-wall">
+      <h3>Edit</h3>
+      <h4><%=vinyl.artist %> - <%= vinyl.title %></h4>
+
       <form action="/collection/<%= vinyl._id %>?_method=PUT" method="POST">
-          <div>
-          <label for="title">Title</label>
-          <input type="text" name="vinyl[title]" value="<%= vinyl.title %>">
+          <div class="form-group">
+            <input type="text" name="vinyl[title]" value="<%= vinyl.title %>">
+            <label for="title">Title</label>
         </div>
-        <div class=>
+        <div class="form-group">
+            <input type="text" name="vinyl[artist]" value="<%= vinyl.artist %>">
           <label for="artist">Artist</label>
-          <input type="text" name="vinyl[artist]" value="<%= vinyl.artist %>">
         </div>
-        <div>
-          <label for="country">Country</label>
-          <select name="vinyl[country]" id="country" required>
+        <div class="form-group">
+            <select name="vinyl[country]" id="country" required>
             <option>UK</option>
             <option>Europe</option>
             <option>UK/Europe</option>
             <option>US</option>
           </select>
+          <label for="country">Country</label>
         </div>
 
-        <div>
-          <label for="condition">Title</label>
-          <select name="vinyl[condition]" id="condition">
+        <div class="form-group">
+            <select name="vinyl[condition]" id="condition">
             <option>M - Mint</option>
             <option>NM - Near Mint</option>
             <option>VG+ - Very Good Plus</option>
@@ -33,11 +34,11 @@
             <option>G - Good</option>
             <option>P - Poor</option>
           </select>
+          <label for="condition">Title</label>
         </div>
 
-        <div>
-          <button>Submit</button>
-        </div>
+        <input type="submit" value="Submit">
+
       </form>
     </div>
 

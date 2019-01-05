@@ -664,6 +664,30 @@ input[type="submit"] {
 }
 
 /* -------------------------------------- */
+/* EDIT */
+/* -------------------------------------- */
+
+.edit-container {
+  @include container(centered);
+  height: calc(100vh - 70px);
+}
+
+.edit-wall {
+  @include wall();
+  min-width: 500px;
+
+  @include breakpoint(phone) {
+    min-width: 300px;
+    width: 95%;
+  }
+
+  input[type="submit"] {
+    margin: 15px 0;
+    width: 100%;
+  }
+}
+
+/* -------------------------------------- */
 /* NOTIFICATION */
 /* -------------------------------------- */
 

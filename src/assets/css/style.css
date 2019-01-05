@@ -499,6 +499,30 @@ input[type="submit"] {
       font-size: 80%; } }
 
 /* -------------------------------------- */
+/* EDIT */
+/* -------------------------------------- */
+.edit-container {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px); }
+
+.edit-wall {
+  text-align: center;
+  padding: 15px 30px;
+  background-color: rgba(248, 246, 246, 0.9);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  min-width: 500px; }
+  @media (max-width: 767px) {
+    .edit-wall {
+      min-width: 300px;
+      width: 95%; } }
+  .edit-wall input[type="submit"] {
+    margin: 15px 0;
+    width: 100%; }
+
+/* -------------------------------------- */
 /* NOTIFICATION */
 /* -------------------------------------- */
 .notification-container {
