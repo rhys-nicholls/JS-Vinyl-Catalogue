@@ -43,7 +43,8 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
           newVinyl.owner.id = req.user.id;
           newVinyl.save();
           Discogs.getPrice(result.discogsId).then((price) => {
-            res.render('collection/show', { vinyl: newlyCreated, price });
+            newVinyl.price = price;
+            res.render('collection/show', { vinyl: newVinyl });
           });
         }
       });
