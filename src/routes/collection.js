@@ -2,6 +2,7 @@ const express = require('express');
 const middleware = require('../middleware/index');
 const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
+const convertCurrency = require('../modules/currencyConverter');
 const keys = require('../config/keys');
 
 const router = express.Router();
@@ -61,8 +62,12 @@ router.get('/:id', middleware.isLoggedIn, (req, res) => {
   Vinyl.findById(req.params.id).then((vinyl) => {
     const foundVinyl = vinyl;
     Discogs.getPrice(foundVinyl.discogsId).then((price) => {
-      foundVinyl.price = price;
-      res.render('collection/show', { vinyl });
+      convertCurrency(price, 'USD', 'GBP')
+        .then((priceGBP) => {
+          foundVinyl.priceUSD = price;
+          foundVinyl.priceGBP = priceGBP;
+          res.render('collection/show', { vinyl });
+        });
     });
   });
 });
