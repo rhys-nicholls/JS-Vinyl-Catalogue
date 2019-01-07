@@ -18,9 +18,7 @@ This project is constantly evolving as my knowledge base increases.
 
 **Current TODOs**
  1. Look into moving the Front End over to React fron EJS as I have now completed a course covering the basics of React.
- 2. Add ability to seach by Barcode instead of Title and Artist
- 3. Add Discogs link to show page for an individual Vinyl.
- 4. Display total value of users vinyl collection on collection page.
+ 2. Display total value of users vinyl collection on collection page.
  
 ## Screenshots
 *Collection Page: Desktop*
