@@ -4,7 +4,8 @@
 
     <div class="collection-header">
       <h2>Welcome to your vinyl collection  <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %> </h2>
-      <h3>Use this webapp to keep track of your vinyl collection</h3><br>
+      <h3>Use this webapp to keep track of your vinyl collection</h3>
+      <h3>Total value of your collection: <%= formattedUSD %> / <%= formattedGBP %></h3>
       <a href="/collection/new">Add a new vinyl to your collection</a>
     </div>
   </div>

@@ -83,7 +83,7 @@ Discogs.getImages = params => Discogs.getRelease(params)
   .then(res => res.images
     .filter(image => image.height >= (image.width - 15)
         && image.height <= (image.width + 15)))
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));
 
 /**
  * Get Discogs page url
@@ -132,7 +132,6 @@ Discogs.createVinyl = params => Promise.all([
       images: res[5],
       uri: res[6],
     };
-    console.log(newVinyl);
     return newVinyl;
   })
   .catch(err => console.error(err));

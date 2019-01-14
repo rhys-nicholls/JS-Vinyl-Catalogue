@@ -2,15 +2,31 @@ const express = require('express');
 const middleware = require('../middleware/index');
 const Vinyl = require('../models/vinyl');
 const Discogs = require('../modules/discogs.js');
-const convertCurrency = require('../modules/currencyConverter');
+const Conversions = require('../modules/currencyConverter');
 const keys = require('../config/keys');
 
 const router = express.Router();
 
 // INDEX - Show all Vinyls in collection
 router.get('/', middleware.isLoggedIn, (req, res) => {
-  Vinyl.find({ 'owner.id': res.locals.currentUser.id })
-    .then(vinyls => res.render('collection', { vinyls }));
+  Conversions.getConversionRate('USD', 'GBP').then((rate) => {
+    Vinyl.find({ 'owner.id': res.locals.currentUser.id })
+      .then((vinyls) => {
+        let vinylTotalUSD = 0;
+        let vinylTotalGBP = 0;
+
+        vinyls.forEach((vinyl) => {
+          const priceGBP = (vinyl.priceUSD * rate);
+          vinylTotalUSD += vinyl.priceUSD;
+          vinylTotalGBP += parseFloat(priceGBP.toFixed(2));
+        });
+
+        const formattedUSD = Conversions.formatToCurrency(vinylTotalUSD, 'USD');
+        const formattedGBP = Conversions.formatToCurrency(vinylTotalGBP, 'GBP');
+
+        res.render('collection', { vinyls, formattedGBP, formattedUSD });
+      });
+  });
 });
 
 // SHOW - Show page for adding a new Vinyl to collection
@@ -40,12 +56,16 @@ router.post('/new', middleware.isLoggedIn, (req, res) => {
           console.error(err);
         } else {
           const newVinyl = newlyCreated;
-          newVinyl.condition = req.body.condition;
-          newVinyl.owner.id = req.user.id;
-          newVinyl.save();
-          Discogs.getPrice(result.discogsId).then((price) => {
-            newVinyl.price = price;
-            res.render('collection/show', { vinyl: newVinyl });
+          Discogs.getPrice(result.discogsId).then((priceUSD) => {
+            Conversions.convertCurrency(priceUSD, 'USD', 'GBP')
+              .then((priceGBP) => {
+                newVinyl.priceUSD = parseFloat(priceUSD);
+                newVinyl.condition = req.body.condition;
+                newVinyl.owner.id = req.user.id;
+                newVinyl.save();
+                newVinyl.priceGBP = priceGBP;
+                res.render('collection/show', { vinyl: newVinyl });
+              });
           });
         }
       });
@@ -62,11 +82,11 @@ router.get('/:id', middleware.isLoggedIn, (req, res) => {
   Vinyl.findById(req.params.id).then((vinyl) => {
     const foundVinyl = vinyl;
     Discogs.getPrice(foundVinyl.discogsId).then((price) => {
-      convertCurrency(price, 'USD', 'GBP')
+      Conversions.convertCurrency(price, 'USD', 'GBP')
         .then((priceGBP) => {
           foundVinyl.priceUSD = price;
           foundVinyl.priceGBP = priceGBP;
-          res.render('collection/show', { vinyl });
+          res.render('collection/show', { vinyl: foundVinyl });
         });
     });
   });

@@ -447,6 +447,8 @@ input[type="submit"] {
     .collection-header a:hover {
       color: #e67e21;
       transition: color 200ms ease-out; }
+  .collection-header h3 {
+    margin-bottom: 10px; }
 
 .collection-cards {
   display: flex;
