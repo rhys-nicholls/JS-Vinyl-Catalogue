@@ -21,7 +21,7 @@
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "node-sass": "^4.9.4"
+    "node-sass": "^4.13.1"
   },
   "dependencies": {
     "axios": "^0.18.0",
